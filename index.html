@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register | Yuva Utkarsh Khel Mahotsav 2.0</title>
+  <meta name="description" content="Register players and teams for Yuva Utkarsh Khel Mahotsav 2.0 and pay the entry fee online.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo-event.webp" type="image/webp">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="org">
+        <img src="logo-org.webp" alt="" width="56" height="56">
+        <span id="orgName"></span>
+      </div>
+      <div class="hero-main">
+        <img class="event-logo" src="logo-event.webp" alt="Event logo" width="480" height="470">
+        <div class="hero-text">
+          <h1 id="eventName">Yuva Utkarsh Khel Mahotsav 2.0</h1>
+          <p class="tagline" id="tagline"></p>
+        </div>
+      </div>
+      <dl class="facts">
+        <div><dt>Dates</dt><dd id="eventDates"></dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="notice" id="demoNotice" hidden>
+      Demo mode: this form is not connected to a sheet or to Razorpay yet. Nothing you enter is saved and no payment is taken.
+    </p>
+    <p class="notice notice-closed" id="closedNotice" hidden>Registrations are closed.</p>
+
+    <form id="regForm" novalidate>
+      <section class="step" aria-labelledby="s1">
+        <h2 id="s1"><span class="step-no">1</span>Your contact details</h2>
+        <p class="step-help">We'll use these to send your receipt and reach you about the schedule.</p>
+        <div class="grid">
+          <label class="field">
+            <span>Family ID</span>
+            <input name="c_family" data-contact="familyId" autocomplete="off" autocapitalize="characters" required>
+          </label>
+          <label class="field">
+            <span>WhatsApp number</span>
+            <input name="c_phone" data-contact="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit number" required maxlength="14">
+          </label>
+          <label class="field">
+            <span>Email <em>(optional, for the receipt)</em></span>
+            <input name="c_email" data-contact="email" type="email" autocomplete="email" maxlength="100">
+          </label>
+        </div>
+      </section>
+
+      <section class="step" aria-labelledby="s2">
+        <h2 id="s2"><span class="step-no">2</span>Players and individual games</h2>
+        <p class="step-help">Add each family member who will play. Games appear once you enter a date of birth, based on age on <span id="refDate"></span>.</p>
+        <div id="players"></div>
+        <button type="button" class="btn-add" data-action="add-player">Add a player</button>
+      </section>
+
+      <section class="step" aria-labelledby="s3">
+        <h2 id="s3"><span class="step-no">3</span>Team games <em class="opt">optional</em></h2>
+        <p class="step-help">The team captain registers the whole team once and pays one team fee.</p>
+        <ul class="team-fees" id="teamFees"></ul>
+        <div id="teams"></div>
+        <button type="button" class="btn-add" data-action="add-team">Add a team</button>
+      </section>
+
+      <section class="step step-review" id="review" aria-labelledby="s4">
+        <h2 id="s4"><span class="step-no">4</span>Review and pay</h2>
+        <div id="summary"></div>
+        <div class="errors" id="errors" role="alert" hidden></div>
+        <label class="agree">
+          <input type="checkbox" id="agree">
+          <span>I confirm the ages are correct and I accept the <a href="policies.html" target="_blank" rel="noopener">event terms and refund policy</a>.</span>
+        </label>
+        <button type="submit" class="btn-pay" id="payBtn">Pay ₹0</button>
+        <p class="pay-note">Payments are handled securely by Razorpay. You can pay by UPI, card, net banking or wallet.</p>
+      </section>
+    </form>
+
+    <section id="result" class="result" hidden aria-live="polite"></section>
+  </main>
+
+  <div class="totalbar" id="totalbar">
+    <div><span class="totalbar-label">Total</span> <strong id="barTotal">₹0</strong></div>
+    <a href="#review" class="totalbar-btn">Review and pay</a>
+  </div>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p id="footContact"></p>
+      <p><a href="policies.html">Terms, refunds and privacy</a></p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
